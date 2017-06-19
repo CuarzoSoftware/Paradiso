@@ -9,17 +9,12 @@ from PyQt5.QtCore import QSize
 ancho, alto = 800,600 # Ancho y Alto mínimos
 
 class Paradiso(QMainWindow):
-	QtCore.QProcess.startDetached('xterm')
 	def __init__(self):
 		QMainWindow.__init__(self)
 		self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-		#self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-		#self.setAttribute(QtCore.Qt.WA_NoSystemBackground, True)
 		self.setStyleSheet("background-color: rgba(255, 255, 255,1);");
 		self.setWindowOpacity(0.8)
-		#self.setAutoFillBackground(False);
 		self.resize(QSize(ancho, 32))
-		QtCore.QProcess.startDetached('compton -c')
 		
 if __name__ == "__main__":
 	app = QApplication(sys.argv)
