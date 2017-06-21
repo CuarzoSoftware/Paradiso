@@ -1,2 +1,2 @@
-# Paradiso
+# Firmament
 Topbar for CuarzoOS

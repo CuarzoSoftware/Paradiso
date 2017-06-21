@@ -8,7 +8,7 @@ from PyQt5.QtCore import QSize
 
 ancho, alto = 800,600 # Ancho y Alto mínimos
 
-class Paradiso(QMainWindow):
+class Firmament(QMainWindow):
 	def __init__(self):
 		QMainWindow.__init__(self)
 		self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -22,6 +22,6 @@ if __name__ == "__main__":
 	rec = app.desktop().screenGeometry() # Obtener tamaño de pantalla del usuario
 	ancho = rec.width()
 	alto = rec.height()
-	mainWin = Paradiso()
+	mainWin = Firmament()
 	mainWin.show()
 	sys.exit( app.exec_() )
