@@ -8,7 +8,7 @@ class Clock(QLabel):
 		super(Clock, self).__init__()
 		self.timer = QTimer()
 		self.timer.timeout.connect(self.Time)
-		self.timer.start(1000)
+		self.timer.start(0)
 
 	def Time(self):
 		fecha = QDate.currentDate().toString("ddd MMM d")
