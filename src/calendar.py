@@ -11,9 +11,9 @@ class Clock(QLabel):
 		self.timer.start(0)
 
 	def Time(self):
-		fecha = QDate.currentDate().toString("ddd MMM d")
+		fecha = QDate.currentDate().toString("ddd d MMM")
 		sdia = fecha.split(".")[0]
-		smes = fecha.split(".")[1]
-		ndia = fecha.split(".")[2]
+		smes = fecha.split(".")[2]
+		ndia = fecha.split(".")[1]
 		hora = QTime.currentTime().toString("hh:mm")
-		self.setText(sdia + smes + ndia + ", " + hora)
+		self.setText(sdia + ndia + smes + ", " + hora)
