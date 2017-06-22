@@ -1,14 +1,7 @@
 #!/usr/bin/python3
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import (
-	QWidget,
-	QLabel
-)
-
-from PyQt5.QtCore import (
-	QTimer,
-	QTime
-)
+from PyQt5.QtWidgets import QWidget, QLabel, QSizePolicy
+from PyQt5.QtCore import QTimer, QTime, QDate
 
 class Clock(QLabel):
 	def __init__(self):
@@ -18,5 +11,9 @@ class Clock(QLabel):
 		self.timer.start(1000)
 
 	def Time(self):
-		time = QTime.currentTime().toString()
-		self.setText(time)
+		fecha = QDate.currentDate().toString("ddd MMM d")
+		sdia = fecha.split(".")[0]
+		smes = fecha.split(".")[1]
+		ndia = fecha.split(".")[2]
+		hora = QTime.currentTime().toString("hh:mm")
+		self.setText(sdia + smes + ndia + ", " + hora)

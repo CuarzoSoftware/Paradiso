@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 import sys
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QLabel, QHBoxLayout, QWidget, QApplication
+from PyQt5.QtWidgets import QLabel, QHBoxLayout, QWidget, QApplication, QPushButton
 from PyQt5.QtCore import QSize, QTimer, QTime
+from PyQt5.QtGui import QIcon
 from src.calendar import Clock
 
 # Variables globales
@@ -13,17 +14,23 @@ class Firmament(QWidget):
 		QWidget.__init__(self)
 		self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 		self.setStyleSheet("background-color: rgb(255, 255, 255);");
-		self.setWindowOpacity(1)
-		self.setMaximumHeight(32)
+		self.setWindowOpacity(0.7)
+		self.setMaximumHeight(30)
+		self.resize(QSize(ancho, 30))
 
 		self.layout = QHBoxLayout()
+		self.layout.setContentsMargins(0,0,0,0)
+		self.layout.setSpacing(0)
 
-		#self.layout.addWidget()
+		cuarzoBtn = QPushButton()
+		cuarzoBtn.setIcon(QIcon("img/cuarzo16x16.png"));
+		cuarzoBtn.setIconSize(QSize(16,16));
+		cuarzoBtn.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
+
+		self.layout.addWidget(cuarzoBtn,0,QtCore.Qt.AlignLeft)
 		self.layout.addWidget(clock,1,QtCore.Qt.AlignCenter)
 
 		self.setLayout(self.layout)
-		self.resize(QSize(ancho, 32))
-
 		
 if __name__ == "__main__":
 	app = QApplication(sys.argv)
