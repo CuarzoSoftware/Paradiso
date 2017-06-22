@@ -6,6 +6,7 @@ from PyQt5.QtCore import QTimer, QTime, QDate
 class Clock(QLabel):
 	def __init__(self):
 		super(Clock, self).__init__()
+		self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 		self.timer = QTimer()
 		self.timer.timeout.connect(self.Time)
 		self.timer.start(0)

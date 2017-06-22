@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import sys, configparser
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QLabel, QWidget, QApplication, QPushButton, QGridLayout,QGroupBox,QHBoxLayout
+from PyQt5.QtWidgets import QLabel, QWidget, QApplication, QPushButton, QGridLayout,QGroupBox,QHBoxLayout,QBoxLayout
 from PyQt5.QtCore import QSize, QTimer, QTime
 from PyQt5.QtGui import QIcon
 from src.calendar import Clock
@@ -13,16 +13,26 @@ class Firmament(QWidget):
 	def __init__(self):
 		QWidget.__init__(self)
 		self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-		self.setStyleSheet("background-color: rgb(255, 255, 255);")
-		self.setWindowOpacity(1)
+		self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+		#self.setWindowOpacity(1)
 		self.setMaximumHeight(30)
 		self.resize(QSize(ancho, 30))
+
+		self.container = QHBoxLayout()
+		self.container.setContentsMargins(0,0,0,0)
+		self.container.setSpacing(0)
+		self.setLayout(self.container)
+		self.contenido = QWidget()
+		self.container.addWidget(self.contenido,0)
+
+		self.contenido.setStyleSheet("background-color: rgba(255, 255, 255,0.5);")	
 
 		self.layout = QGridLayout()
 		self.layout.setContentsMargins(0,0,0,0)
 		self.layout.setSpacing(0)
 
 		self.cuarzoBtn = QPushButton()
+		self.cuarzoBtn.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 		self.batteryStatus = QPushButton()
 		self.wifiStatus = QPushButton()
 		self.volumeControl = QPushButton()
@@ -39,7 +49,7 @@ class Firmament(QWidget):
 		self.browser.setIcon(QIcon(browserIcon))
 		self.terminal.setIconSize(QSize(22,22))
 		self.browser.setIconSize(QSize(22,22))
-		self.terminal.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
+		self.terminal.setStyleSheet("background-color: rgba(0, 0, 0, 0);")
 		self.browser.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
 
 		self.cuarzoBtn.setIcon(QIcon("src/img/cuarzo_16x16.png"))
@@ -86,8 +96,8 @@ class Firmament(QWidget):
 		self.layout.addWidget(clock,0,1,QtCore.Qt.AlignCenter)
 		self.layout.addWidget(self.btnGroup,0,2, QtCore.Qt.AlignRight)
 
-		self.setLayout(self.layout)
-		
+		self.contenido.setLayout(self.layout)
+
 if __name__ == "__main__":
 	config = configparser.ConfigParser()
 	config.read('settings.ini')
